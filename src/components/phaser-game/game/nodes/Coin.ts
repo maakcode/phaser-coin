@@ -12,11 +12,14 @@ export class Coin extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    this.play(
-      isPlus
+    this.play({
+      key: isPlus
         ? AssetKey.Animation.plusCoinFlip
-        : AssetKey.Animation.minusCoinFlip
-    );
+        : AssetKey.Animation.minusCoinFlip,
+      frameRate: Phaser.Math.Between(12, 20),
+      startFrame: Phaser.Math.Between(0, 5),
+      repeat: -1,
+    });
   }
 
   update(): void {
