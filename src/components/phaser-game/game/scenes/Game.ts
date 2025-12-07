@@ -117,6 +117,28 @@ export class Game extends Scene {
       this.sound.play(AssetKey.Sound.loseScore);
     }
 
+    const blastRadius = 150;
+    const blastSpeed = 900;
+
+    const bodies = this.physics.overlapCirc(
+      coin.x,
+      coin.y,
+      blastRadius,
+      true,
+      true
+    );
+
+    bodies.forEach((body) => {
+      const child = body.gameObject;
+      if (child === coin || !(child instanceof Coin)) return;
+
+      const angle = Phaser.Math.Angle.Between(coin.x, coin.y, child.x, child.y);
+      child.setVelocity(
+        Math.cos(angle) * blastSpeed,
+        Math.sin(angle) * blastSpeed
+      );
+    });
+
     coin.disableInteractive();
     coin.setVelocity(0, 0);
     this.coinGroups.remove(coin, true, true);
