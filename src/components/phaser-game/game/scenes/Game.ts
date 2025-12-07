@@ -5,7 +5,7 @@ import { AssetKey, RegistryKey } from "../types";
 
 export class Game extends Scene {
   score: number = 0;
-  coins: Coin[] = [];
+  coinGroups!: Phaser.Physics.Arcade.Group;
   plusStarEmitter!: Phaser.GameObjects.Particles.ParticleEmitter;
   minusStarEmitter!: Phaser.GameObjects.Particles.ParticleEmitter;
   scoreText!: Phaser.GameObjects.Text;
@@ -20,7 +20,6 @@ export class Game extends Scene {
     const { width, height } = this.scale;
     this.registry.set(RegistryKey.score, 0);
     this.score = 0;
-    this.coins = [];
 
     this.anims.create({
       key: AssetKey.Animation.plusCoinFlip,
@@ -70,6 +69,11 @@ export class Game extends Scene {
 
     this.physics.world.setBounds(0, -400, width, height + 400);
 
+    this.coinGroups = this.physics.add.group({
+      defaultKey: "coins",
+      collideWorldBounds: true,
+    });
+
     for (let i = 0; i < 21; i++) {
       this.dropCoin(i < 7);
     }
@@ -95,13 +99,13 @@ export class Game extends Scene {
     const y = Phaser.Math.Between(-100, -300);
 
     const coin = new Coin(this, x, y, isPlus);
+    this.coinGroups.add(coin);
+
     coin.setVelocityX(Phaser.Math.Between(-600, 600));
     coin.setVelocityY(Phaser.Math.Between(-400, 100));
     coin.setCollideWorldBounds(true);
     coin.setBounce(1, Phaser.Math.FloatBetween(0.8, 0.9));
     coin.setInteractive();
-
-    this.coins.push(coin);
   }
 
   clickCoin(coin: Coin) {
@@ -115,15 +119,15 @@ export class Game extends Scene {
 
     coin.disableInteractive();
     coin.setVelocity(0, 0);
-    coin.destroy();
-
+    this.coinGroups.remove(coin, true, true);
     this.score = Math.max(0, this.score + (coin.isPlus ? 1 : -1));
     this.scoreText.setText("Coins: " + this.score);
 
-    const isPlus =
-      this.score +
-        this.coins.filter((item) => item.active && item.isPlus).length <
-      10;
+    const numberOfGoldenCoins = this.coinGroups
+      .getChildren()
+      .filter((item) => item instanceof Coin && item.isPlus).length;
+
+    const isPlus = this.score + numberOfGoldenCoins < 10;
 
     this.dropCoin(isPlus);
   }
@@ -135,14 +139,16 @@ export class Game extends Scene {
   }
 
   gameOver() {
-    this.coins.forEach((coin) => {
-      if (coin.active) {
+    this.coinGroups.getChildren().forEach((coin) => {
+      if (!(coin instanceof Coin)) return;
+
+      if (coin.isPlus) {
         this.plusStarEmitter.emitParticle(8, coin.x, coin.y);
-        coin.disableInteractive();
-        coin.setVelocity(0, 0);
-        coin.destroy();
+      } else {
+        this.minusStarEmitter.emitParticle(8, coin.x, coin.y);
       }
     });
+    this.coinGroups.clear(true, true);
 
     this.input.off("gameobjectdown");
     this.registry.set(RegistryKey.score, this.score);
