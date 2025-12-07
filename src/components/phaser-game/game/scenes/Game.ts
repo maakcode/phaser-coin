@@ -70,8 +70,8 @@ export class Game extends Scene {
 
     this.physics.world.setBounds(0, -400, width, height + 400);
 
-    for (let i = 0; i < 32; i++) {
-      this.dropCoin(i < 8);
+    for (let i = 0; i < 21; i++) {
+      this.dropCoin(i < 7);
     }
 
     this.input.on(

@@ -8,6 +8,7 @@ export class Coin extends Phaser.Physics.Arcade.Sprite {
     const image = isPlus ? AssetKey.Image.plusCoin : AssetKey.Image.minusCoin;
     super(scene, x, y, image);
     this.isPlus = isPlus;
+    this.setScale(1.75);
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
