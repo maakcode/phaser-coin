@@ -2,6 +2,8 @@
 
 Collect golden coins while skillfully avoiding cursed coins. Test your reflexes and aim for the highest score!
 
+<img width="300" alt="phaser-coin" src="https://github.com/user-attachments/assets/fbb6f6de-a946-4036-b9d2-496c8f16bab5" />
+
 ## How to Play
 
 <https://maakcode.github.io/phaser-coin>
