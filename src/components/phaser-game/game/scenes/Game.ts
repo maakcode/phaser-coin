@@ -130,7 +130,8 @@ export class Game extends Scene {
       this.sound.play(AssetKey.Sound.loseScore);
     }
 
-    this.scoreTween?.stop();
+    this.scoreTween?.seek(0);
+    this.scoreTween?.remove();
     this.scoreTween = this.tweens.add({
       targets: this.scoreText,
       y: { value: coin.isPlus ? "-=30" : "+=30" },
