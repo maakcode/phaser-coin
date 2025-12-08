@@ -8,6 +8,9 @@ export const AssetKey = {
     gainScore: "sound_gain_score",
     loseScore: "sound_lose_score",
   },
+  Font: {
+    titanOne: "titan-one",
+  },
   Animation: {
     plusCoinFlip: "plus-coin-flip",
     minusCoinFlip: "minus-coin-flip",

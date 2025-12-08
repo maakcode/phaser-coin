@@ -30,6 +30,7 @@ export class Preloader extends Scene {
       frameHeight: 64,
     });
     this.load.image(AssetKey.Image.star, "star.png");
+    this.load.font(AssetKey.Font.titanOne, "TitanOne-Regular.ttf");
     this.load.audio(AssetKey.Sound.gainScore, "scores.wav");
     this.load.audio(AssetKey.Sound.loseScore, "lose_scores.wav");
   }

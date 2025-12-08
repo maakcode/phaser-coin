@@ -1,5 +1,6 @@
 import { EventBus, EventKey } from "../EventBus";
 import { Scene } from "phaser";
+import { AssetKey } from "../types";
 
 export class MainMenu extends Scene {
   constructor() {
@@ -11,7 +12,7 @@ export class MainMenu extends Scene {
 
     this.add
       .text(0.5 * width, 0.3 * height, "Phaser Coin", {
-        fontFamily: "Arial Black",
+        fontFamily: AssetKey.Font.titanOne,
         fontSize: 150,
         color: "#ffffff",
         stroke: "#000000",
@@ -24,7 +25,7 @@ export class MainMenu extends Scene {
 
     this.add
       .text(0.5 * width, 0.7 * height, "Click to start", {
-        fontFamily: "Arial Black",
+        fontFamily: AssetKey.Font.titanOne,
         fontSize: 96,
         color: "#ffffff",
         stroke: "#000000",

@@ -1,6 +1,6 @@
 import { EventBus, EventKey } from "../EventBus";
 import { Scene } from "phaser";
-import { RegistryKey } from "../types";
+import { AssetKey, RegistryKey } from "../types";
 
 export class GameOver extends Scene {
   constructor() {
@@ -13,7 +13,7 @@ export class GameOver extends Scene {
 
     this.add
       .text(0.5 * width, 0.5 * height, `Game Over\n\Score: ${score}`, {
-        fontFamily: "Arial Black",
+        fontFamily: AssetKey.Font.titanOne,
         fontSize: 64,
         color: "#ffffff",
         stroke: "#000000",

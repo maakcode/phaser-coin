@@ -56,7 +56,19 @@ export class Game extends Scene {
       emitting: false,
     });
 
-    this.scoreText = this.add.text(32, 32, "Coins: 0").setDepth(1);
+    this.scoreText = this.add
+      .text(0.5 * width, 0.15 * height, "0", {
+        fontFamily: AssetKey.Font.titanOne,
+        fontSize: 256,
+        color: "#ffffff",
+        stroke: "#000000",
+        strokeThickness: 12,
+        align: "center",
+      })
+      .setOrigin(0.5)
+      .setScale(0.5)
+      .setDepth(1);
+
     this.timeText = this.add
       .text(1024 - 32, 32, "Time: 5")
       .setOrigin(1, 0)
@@ -143,7 +155,7 @@ export class Game extends Scene {
     coin.setVelocity(0, 0);
     this.coinGroups.remove(coin, true, true);
     this.score = Math.max(0, this.score + (coin.isPlus ? 1 : -1));
-    this.scoreText.setText("Coins: " + this.score);
+    this.scoreText.setText(`${this.score}`);
 
     const numberOfGoldenCoins = this.coinGroups
       .getChildren()
