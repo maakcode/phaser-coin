@@ -9,6 +9,7 @@ export class Game extends Scene {
   plusStarEmitter!: Phaser.GameObjects.Particles.ParticleEmitter;
   minusStarEmitter!: Phaser.GameObjects.Particles.ParticleEmitter;
   scoreText!: Phaser.GameObjects.Text;
+  scoreTween?: Phaser.Tweens.Tween;
   timeText!: Phaser.GameObjects.Text;
   timer!: Phaser.Time.TimerEvent;
 
@@ -128,6 +129,16 @@ export class Game extends Scene {
       this.minusStarEmitter.emitParticle(8, coin.x, coin.y);
       this.sound.play(AssetKey.Sound.loseScore);
     }
+
+    this.scoreTween?.stop();
+    this.scoreTween = this.tweens.add({
+      targets: this.scoreText,
+      y: { value: coin.isPlus ? "-=30" : "+=30" },
+      scale: coin.isPlus ? 0.8 : 0.3,
+      ease: "sine.inout",
+      duration: 100,
+      yoyo: true,
+    });
 
     const blastRadius = 150;
     const blastSpeed = 900;
