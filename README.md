@@ -2,7 +2,7 @@
 
 Collect golden coins while skillfully avoiding cursed coins. Test your reflexes and aim for the highest score!
 
-<img width="300" alt="phaser-coin" src="https://github.com/user-attachments/assets/9ff690e4-cb04-4e4b-9d6b-31831a85f2a0" />
+<img width="300" alt="phaser-coin" src="https://github.com/user-attachments/assets/95943c83-f756-4c70-8669-75f5caf237e4" />
 
 ## How to Play
 
