@@ -87,7 +87,7 @@ export class Game extends Scene {
       collideWorldBounds: true,
     });
 
-    for (let i = 0; i < 21; i++) {
+    for (let i = 0; i < 16; i++) {
       this.dropCoin(i < 7);
     }
 
