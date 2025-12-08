@@ -12,7 +12,7 @@ export class GameOver extends Scene {
     const score = this.registry.get(RegistryKey.score);
 
     this.add
-      .text(0.5 * width, 0.5 * height, `Game Over\n\Score: ${score}`, {
+      .text(0.5 * width, 0.5 * height, `Game Over\n\nScore: ${score}`, {
         fontFamily: AssetKey.Font.titanOne,
         fontSize: 64,
         color: "#ffffff",
