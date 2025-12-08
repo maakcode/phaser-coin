@@ -10,8 +10,8 @@ export class Game extends Scene {
   minusStarEmitter!: Phaser.GameObjects.Particles.ParticleEmitter;
   scoreText!: Phaser.GameObjects.Text;
   scoreTween?: Phaser.Tweens.Tween;
-  timeText!: Phaser.GameObjects.Text;
   timer!: Phaser.Time.TimerEvent;
+  progressBar!: Phaser.GameObjects.Rectangle;
 
   constructor() {
     super("Game");
@@ -70,10 +70,10 @@ export class Game extends Scene {
       .setScale(0.5)
       .setDepth(1);
 
-    this.timeText = this.add
-      .text(1024 - 32, 32, "Time: 5")
-      .setOrigin(1, 0)
-      .setDepth(1);
+    this.progressBar = this.add
+      .rectangle(0, height, width, height, 0x1e293b)
+      .setOrigin(0, 0)
+      .setDepth(-1);
 
     this.timer = this.time.addEvent({
       delay: 7_000,
@@ -178,9 +178,8 @@ export class Game extends Scene {
   }
 
   update() {
-    this.timeText.setText(
-      "Time: " + Math.ceil(this.timer.getRemainingSeconds())
-    );
+    const { height } = this.scale;
+    this.progressBar.y = height * (1 - this.timer.getProgress());
   }
 
   gameOver() {
