@@ -79,7 +79,7 @@ export class Game extends Scene {
       .setDepth(-1);
 
     this.timer = this.time.addEvent({
-      delay: 7_000,
+      delay: 8_600,
       callback: () => this.gameOver(),
     });
 
