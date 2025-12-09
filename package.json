@@ -2,7 +2,7 @@
   "name": "phaser-coin",
   "homepage": "https://maakcode.github.io/phaser-coin",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
