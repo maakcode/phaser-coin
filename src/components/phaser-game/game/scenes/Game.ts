@@ -146,6 +146,7 @@ export class Game extends Scene {
 
     const blastRadius = 150;
     const blastSpeed = 900;
+    const direction = coin.isPlus ? 1 : -1;
 
     const bodies = this.physics.overlapCirc(
       coin.x,
@@ -161,8 +162,8 @@ export class Game extends Scene {
 
       const angle = Phaser.Math.Angle.Between(coin.x, coin.y, child.x, child.y);
       child.setVelocity(
-        Math.cos(angle) * blastSpeed,
-        Math.sin(angle) * blastSpeed
+        Math.cos(angle) * blastSpeed * direction,
+        Math.sin(angle) * blastSpeed * direction
       );
     });
 
