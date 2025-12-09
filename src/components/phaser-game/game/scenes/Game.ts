@@ -3,6 +3,9 @@ import { EventBus, EventKey } from "../EventBus";
 import { Coin } from "../nodes/Coin";
 import { AssetKey, RegistryKey } from "../types";
 
+const TOTAL_COINS = 13;
+const GOLDEN_COINS = 5;
+
 export class Game extends Scene {
   score: number = 0;
   coinGroups!: Phaser.Physics.Arcade.Group;
@@ -87,8 +90,8 @@ export class Game extends Scene {
       collideWorldBounds: true,
     });
 
-    for (let i = 0; i < 16; i++) {
-      this.dropCoin(i < 7);
+    for (let i = 0; i < TOTAL_COINS; i++) {
+      this.dropCoin(i < GOLDEN_COINS);
     }
 
     this.input.on(
@@ -169,9 +172,13 @@ export class Game extends Scene {
     this.score = Math.max(0, this.score + (coin.isPlus ? 1 : -1));
     this.scoreText.setText(`${this.score}`);
 
-    const numberOfGoldenCoins = this.coinGroups
+    const coins = this.coinGroups
       .getChildren()
-      .filter((item) => item instanceof Coin && item.isPlus).length;
+      .filter((item) => item instanceof Coin);
+
+    const numberOfGoldenCoins = coins.filter((coin) => coin.isPlus).length;
+
+    coins.length;
 
     const isPlus = this.score + numberOfGoldenCoins < 10;
 
