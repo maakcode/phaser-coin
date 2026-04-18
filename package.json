@@ -9,8 +9,7 @@
     "build": "tsc -b && vite build --base ./",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist -r https://github.com/maakcode/phaser-coin -f",
-    "vscode": "yarn dlx @yarnpkg/sdks vscode"
+    "deploy": "gh-pages -d dist -r https://github.com/maakcode/phaser-coin -f"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
@@ -36,5 +35,5 @@
     "typescript-eslint": "^8.46.3",
     "vite": "^7.2.2"
   },
-  "packageManager": "yarn@4.11.0"
+  "packageManager": "pnpm@8.12.1+sha1.aa961ffce9b6eaa56307d9b5ff7e984f25b7eb58"
 }
