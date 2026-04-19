@@ -1,3 +1,4 @@
+import * as Phaser from "phaser";
 import { Scene } from "phaser";
 import { EventBus, EventKey } from "../EventBus";
 import { Coin } from "../nodes/Coin";
@@ -98,12 +99,12 @@ export class Game extends Scene {
       "gameobjectdown",
       (
         pointer: Phaser.Input.Pointer,
-        gameObject: Phaser.GameObjects.GameObject
+        gameObject: Phaser.GameObjects.GameObject,
       ) => {
         if (gameObject instanceof Coin) {
           this.clickCoin(gameObject);
         }
-      }
+      },
     );
 
     EventBus.emit(EventKey.Start);
@@ -153,7 +154,7 @@ export class Game extends Scene {
       coin.y,
       blastRadius,
       true,
-      true
+      true,
     );
 
     bodies.forEach((body) => {
@@ -163,7 +164,7 @@ export class Game extends Scene {
       const angle = Phaser.Math.Angle.Between(coin.x, coin.y, child.x, child.y);
       child.setVelocity(
         Math.cos(angle) * blastSpeed * direction,
-        Math.sin(angle) * blastSpeed * direction
+        Math.sin(angle) * blastSpeed * direction,
       );
     });
 

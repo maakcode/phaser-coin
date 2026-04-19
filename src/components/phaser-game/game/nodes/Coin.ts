@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+import * as Phaser from "phaser";
 import { AssetKey } from "../types";
 
 export class Coin extends Phaser.Physics.Arcade.Sprite {
